@@ -12,6 +12,7 @@ import Engineering from './components/Engineering'
 import Advantages from './components/Advantages'
 import Industries from './components/Industries'
 import Contact from './components/Contact'
+import Faq from './components/Faq'
 import Footer from './components/Footer'
 import ScrollGear from './components/ScrollGear'
 import CatalogModal from './components/CatalogModal'
@@ -112,6 +113,7 @@ export default function App() {
         <Advantages />
         <Marquee items={INDUSTRIES.map((i) => i.name)} />
         <Industries />
+        <Faq />
         <Contact />
       </main>
       <Footer />

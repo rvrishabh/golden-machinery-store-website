@@ -28,6 +28,7 @@ export default function Footer() {
                 ['Products', '#products'],
                 ['Engineering', '#engineering'],
                 ['Industries', '#industries'],
+                ['FAQ', '#faq'],
               ].map(([l, h]) => (
                 <a key={h} href={h} onClick={go(h)}>
                   {l}

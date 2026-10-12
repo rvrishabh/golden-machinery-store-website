@@ -28,7 +28,7 @@ export default function Contact() {
       <div className="container contact-grid">
         <div>
           <p className="eyebrow" data-reveal>
-            [ 06 ] Contact
+            [ 07 ] Contact
           </p>
           <h2 className="h2" data-split>
             Let's get your <em>drive</em> running.
@@ -42,12 +42,12 @@ export default function Contact() {
             {BRAND.units.map((u) => (
               <div className="c-card" key={u.label} data-reveal>
                 <MapPin size={18} />
-                <div>
+                <address>
                   <p className="mono accent">{u.label}</p>
                   {u.lines.map((l) => (
                     <p key={l}>{l}</p>
                   ))}
-                </div>
+                </address>
               </div>
             ))}
             <div className="c-card" data-reveal>

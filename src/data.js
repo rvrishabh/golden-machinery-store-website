@@ -177,3 +177,43 @@ export const DIMENSIONS = [
   ['HD', 'Hub diameter'],
   ['BORE', 'Shaft bore'],
 ]
+
+// Shown on the page (FAQ section) and mirrored into FAQPage structured data + llms.txt.
+export const FAQS = [
+  {
+    q: 'What does Golden Machinery manufacture?',
+    a: 'Golden Machinery manufactures mechanical power transmission products: V-belt pulleys (solid, plain, split, step, bearing and jutta types), crown patta flat-belt pulleys (crown patta, split crown patta, solid crown and collar pulleys), elevator pulleys, couplings and block bearings.',
+  },
+  {
+    q: 'Where is Golden Machinery located?',
+    a: 'Golden Machinery has two manufacturing units in Agra, Uttar Pradesh, India: Unit 1 at 7/12 Lan Gau Shala Pathwari, Agra 282004, and Unit 2 at 7 Vidhya Puram, Rambagh, Agra 282004.',
+  },
+  {
+    q: 'How long has Golden Machinery been in business?',
+    a: 'Golden Machinery has over six decades (60+ years) of experience manufacturing pulleys, couplings and block bearings.',
+  },
+  {
+    q: 'Which industries use Golden Machinery pulleys?',
+    a: 'Golden Machinery serves the chemical industry, AHU manufacturing, material handling equipment, sugar plants, the textile industry, dal and rice mill plants, the crusher industry, paper plants and agri processing equipment.',
+  },
+  {
+    q: 'What is a crown patta pulley?',
+    a: 'A crown patta pulley is a flat-belt pulley whose running face is slightly crowned (higher in the middle). The crown keeps the flat belt tracking in the centre of the pulley while it runs.',
+  },
+  {
+    q: 'What is the difference between a split pulley and a solid pulley?',
+    a: 'A split pulley is made in two halves that bolt together around the shaft, so it can be fitted or replaced without removing bearings or couplings. A solid pulley is a single cast piece, which makes it compact and rigid.',
+  },
+  {
+    q: 'Why choose Golden pulleys?',
+    a: 'Golden pulleys are made in accordance with industry standards, precisely machined and balanced, cast from high-quality material, and built for minimal runout and wobble. Accurately matched belts and grooves also improve energy efficiency and belt life.',
+  },
+  {
+    q: 'Can Golden Machinery supply pulleys for a specific size or drawing?',
+    a: 'Yes. Share your drawing or requirement (diameter, bore, number of grooves, face width and quantity) by phone, WhatsApp or email and the team will confirm what can be supplied.',
+  },
+  {
+    q: 'How do I get a quote or the product catalogue?',
+    a: 'Call or WhatsApp +91 86500 00657 or +91 98370 70994, or email mohakagarwal22@gmail.com. The full product catalogue (PDF) can be downloaded from the website after filling in a short enquiry form.',
+  },
+]
