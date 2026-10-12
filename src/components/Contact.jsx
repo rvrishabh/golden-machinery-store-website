@@ -2,14 +2,23 @@ import { useState } from 'react'
 import { ArrowUpRight, MapPin, Phone, Mail, MessageCircle, Download, FileText } from 'lucide-react'
 import { openCatalog } from '../lib/catalog'
 import { BRAND, PRODUCTS } from '../data'
+import { sendLead } from '../lib/leads'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', company: '', phone: '', product: '', message: '' })
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
-  // No backend: the enquiry opens in WhatsApp, pre-filled, for the visitor to send.
+  const [sent, setSent] = useState(false)
+
+  // Emailed via Web3Forms, and opened in WhatsApp pre-filled for the visitor to send.
   const submit = (e) => {
     e.preventDefault()
+    sendLead({
+      subject: `Website enquiry: ${form.name}${form.company ? ` (${form.company})` : ''}`,
+      fields: form,
+      botcheck: e.target.elements.botcheck?.checked,
+    }).catch((err) => console.error('[contact] enquiry email failed', err))
+    setSent(true)
     const text = [
       'Hello Golden Machinery, I have an enquiry.',
       `Name: ${form.name}`,
@@ -81,9 +90,10 @@ export default function Contact() {
         </div>
 
         <form className="form" onSubmit={submit} data-reveal>
+          <input type="checkbox" name="botcheck" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <div className="form-head">
             <p className="mono">Enquiry form</p>
-            <span className="mono accent">Opens in WhatsApp</span>
+            <span className="mono accent">Email + WhatsApp</span>
           </div>
           <div className="row">
             <label>
@@ -116,8 +126,13 @@ export default function Contact() {
             <textarea rows={4} value={form.message} onChange={set('message')} placeholder="Size, bore, grooves, quantity…" />
           </label>
           <button className="btn btn-primary btn-lg" type="submit">
-            <MessageCircle size={18} /> Send via WhatsApp <ArrowUpRight size={18} />
+            <MessageCircle size={18} /> Send enquiry <ArrowUpRight size={18} />
           </button>
+          {sent && (
+            <p className="form-sent" role="status">
+              Thank you. Your enquiry has been sent, and WhatsApp has opened in case you'd like to chat now.
+            </p>
+          )}
         </form>
       </div>
     </section>

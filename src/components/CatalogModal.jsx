@@ -49,7 +49,7 @@ export default function CatalogModal() {
     setStatus('sending')
     const lead = { ...form, name: form.name.trim(), phone: form.phone.trim(), email: form.email.trim() }
     try {
-      await submitLead(lead)
+      await submitLead(lead, e.target.elements.botcheck?.checked)
     } catch (err) {
       // never hold the catalogue hostage to a network hiccup
       console.error('[catalog] lead submit failed', err)
@@ -124,6 +124,7 @@ export default function CatalogModal() {
                 </div>
               ) : (
                 <form className="catalog-form" onSubmit={submit}>
+                  <input type="checkbox" name="botcheck" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                   <div>
                     <h3>Get the catalogue</h3>
                     <p className="catalog-intro">Share a few details and the PDF downloads instantly.</p>

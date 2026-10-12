@@ -2419,3 +2419,18 @@ address {
     padding-right: 0;
   }
 }
+
+/* spam honeypot: invisible to people, filled by bots */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-sent {
+  margin: 0;
+  font-size: 14px;
+  color: var(--accent-deep);
+}

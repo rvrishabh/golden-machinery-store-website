@@ -1,3 +1,5 @@
+import { sendLead } from './leads'
+
 export const CATALOG_URL = '/golden-machinery-catalogue.pdf'
 export const CATALOG_FILENAME = 'Golden-Machinery-Catalogue.pdf'
 
@@ -11,23 +13,8 @@ export const onCatalogOpen = (fn) => {
   return () => window.removeEventListener(OPEN_EVENT, fn)
 }
 
-// Where catalogue leads are POSTed as JSON. Set VITE_LEAD_ENDPOINT in .env
-// (e.g. a Formspree / Web3Forms / Google Apps Script URL). Unset = not sent anywhere.
-const ENDPOINT = import.meta.env.VITE_LEAD_ENDPOINT
-
-export async function submitLead(lead) {
-  const payload = { ...lead, source: 'Catalogue download', submittedAt: new Date().toISOString(), page: location.href }
-  if (!ENDPOINT) {
-    console.warn('[catalog] VITE_LEAD_ENDPOINT is not set; lead was not sent.', payload)
-    return false
-  }
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(payload),
-  })
-  if (!res.ok) throw new Error(`Lead endpoint responded ${res.status}`)
-  return true
+export function submitLead(lead, botcheck) {
+  return sendLead({ subject: `Catalogue download: ${lead.name}${lead.company ? ` (${lead.company})` : ''}`, fields: lead, botcheck })
 }
 
 export function downloadCatalog() {
