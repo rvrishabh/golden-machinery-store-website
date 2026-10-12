@@ -191,15 +191,16 @@ function Drive({ drag }) {
     const g = group.current
     const mx = state.pointer.x
     const my = state.pointer.y
-    g.rotation.y = THREE.MathUtils.lerp(g.rotation.y, -0.38 + p * 0.75 + mx * 0.12, 0.06)
+    g.rotation.y = THREE.MathUtils.lerp(g.rotation.y, (state.size.width < 900 ? -0.22 : -0.38) + p * 0.75 + mx * 0.12, 0.06)
     g.rotation.x = THREE.MathUtils.lerp(g.rotation.x, 0.12 - p * 0.2 - my * 0.08, 0.06)
-    g.position.y = THREE.MathUtils.lerp(g.position.y, 0.2 + p * 0.4, 0.06)
+    g.position.y = THREE.MathUtils.lerp(g.position.y, (state.size.width < 900 ? 0.35 : 0.2) + p * 0.4, 0.06)
     // fit the drive (~7.6 units wide) into the right half on desktop, centred on mobile
     const w = state.size.width
     const vw = state.viewport.width
     const mobile = w < 900
-    const fit = mobile ? Math.min(0.6, (vw * 0.8) / 7.8) : Math.min(0.95, (vw * 0.47) / 7.8)
-    const x = mobile ? 0.1 : vw * 0.25 * (1 - p) + 0.05
+    // drive spans x -3.95..3.63 locally (centre -0.16); on phones it gets its own box, so fill it
+    const fit = mobile ? Math.min(1, (vw * 0.82) / 7.8) : Math.min(0.95, (vw * 0.47) / 7.8)
+    const x = mobile ? 0.05 : vw * 0.25 * (1 - p) + 0.05
     g.position.x = THREE.MathUtils.lerp(g.position.x, x, 0.06)
     const sc = fit * (1 + p * (mobile ? 0.1 : 0.45))
     g.scale.setScalar(THREE.MathUtils.lerp(g.scale.x, sc, 0.06))

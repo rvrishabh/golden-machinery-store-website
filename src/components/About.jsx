@@ -75,8 +75,9 @@ export default function About() {
                 <path id="orbit-path" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0" />
               </defs>
               <text>
-                <textPath href="#orbit-path">
-                  QUALITY · PRECISION · RELIABILITY · DURABILITY · QUALITY · PRECISION · RELIABILITY ·
+                {/* textLength = circumference (2π·82), so the phrase closes the loop exactly */}
+                <textPath href="#orbit-path" textLength="515" lengthAdjust="spacing">
+                  QUALITY · PRECISION · RELIABILITY · DURABILITY ·
                 </textPath>
               </text>
             </svg>

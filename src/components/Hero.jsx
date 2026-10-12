@@ -48,7 +48,10 @@ export default function Hero({ ready }) {
         .from('.hero-stats > *', { y: 30, opacity: 0, duration: 1, stagger: 0.07 }, 0.7)
         .from('.hero-stage', { opacity: 0, duration: 2 }, 0)
 
-      const st = ScrollTrigger.create({
+      // the pinned fly-through only on desktop; phones scroll the hero normally
+      const mm = gsap.matchMedia()
+      mm.add('(min-width: 900px)', () => {
+        ScrollTrigger.create({
         trigger: root.current,
         start: 'top top',
         end: '+=90%',
@@ -61,9 +64,11 @@ export default function Hero({ ready }) {
           .to('.hero-copy', { yPercent: -18, opacity: 0, ease: 'none', duration: 0.45 }, 0)
           .to('.hero-stats', { y: 60, opacity: 0, ease: 'none', duration: 0.4 }, 0)
           .to('.hero-tagline', { opacity: 1, y: 0, ease: 'none', duration: 0.45 }, 0.55),
+        })
+        return () => (scrollState.heroProgress = 0)
       })
       return () => {
-        st.kill()
+        mm.revert()
         split.revert()
       }
     },

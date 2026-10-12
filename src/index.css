@@ -418,9 +418,25 @@ em {
   border-bottom: 1px solid transparent;
 }
 
-.nav.is-scrolled {
+/* blur lives on a pseudo layer: backdrop-filter on .nav itself would trap the
+   fixed mobile menu sheet inside the 80px header */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(246, 248, 251, 0.8);
   backdrop-filter: blur(16px) saturate(140%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.nav.is-scrolled::before,
+.nav.is-open::before {
+  opacity: 1;
+}
+
+.nav.is-scrolled {
   border-color: var(--line);
 }
 
@@ -536,7 +552,7 @@ em {
 }
 
 .nav-sheet > a {
-  font-size: clamp(36px, 9vw, 64px);
+  font-size: clamp(30px, 8.4vw, 64px);
   font-weight: 800;
   font-stretch: 120%;
   text-transform: uppercase;
@@ -1904,20 +1920,41 @@ em {
 }
 
 @media (max-width: 899px) {
+  /* hero stacks: copy → 3D drive in its own box → stats, so nothing overlaps */
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding: 104px 0 28px;
+  }
   .hero-copy {
+    order: 1;
+    height: auto;
+    padding: 0 var(--gutter);
     justify-content: flex-start;
-    padding-top: 120px;
   }
   .hero-title {
     font-size: 11.6vw;
   }
+  .hero-sub {
+    margin: 20px 0 24px;
+    font-size: 16px;
+  }
   .hero-stage {
-    top: 42%;
-    opacity: 0.75;
+    order: 2;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(230px, 64vw, 380px);
+    margin: 8px 0 4px;
   }
   .hero-stats {
+    order: 3;
+    position: relative;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
+    padding-bottom: 0;
   }
   .hero-stats > div {
     min-width: 0;
@@ -1929,7 +1966,7 @@ em {
     display: none !important;
   }
   .hero-tagline {
-    top: 18vh;
+    display: none;
   }
   .about-grid,
   .eng-head,
@@ -2433,4 +2470,169 @@ address {
   margin: 0;
   font-size: 14px;
   color: var(--accent-deep);
+}
+
+/* ---------- phone polish ---------- */
+/* grid/flex children may shrink below their longest word instead of stretching the column */
+.about-grid > *,
+.contact-grid > *,
+.faq-grid > *,
+.adv-grid > *,
+.eng-grid > *,
+.eng-head > *,
+.vm > *,
+.stats > * {
+  min-width: 0;
+}
+
+@media (max-width: 899px) {
+  .section {
+    padding: 80px 0;
+  }
+  .h2 {
+    font-size: clamp(30px, 8.8vw, 52px);
+    overflow-wrap: break-word;
+  }
+  .lead {
+    font-size: 17px;
+  }
+  .rail-head .h2 {
+    font-size: clamp(30px, 8.8vw, 52px);
+  }
+  .about-copy .lead {
+    margin-top: 28px;
+  }
+  .stat-n {
+    font-size: clamp(44px, 13vw, 72px);
+  }
+  .foot-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+    width: 100%;
+  }
+  .foot-giant {
+    font-size: 11.4vw;
+    margin-top: 56px;
+  }
+  .modal {
+    padding: 0;
+    place-items: end stretch;
+  }
+  .modal-panel {
+    max-height: 92svh;
+    border-radius: 22px 22px 0 0;
+  }
+  .modal-info h3 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+  }
+  /* primary CTA full width, the other two share a row */
+  .hero-ctas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0 12px;
+    font-size: 14px;
+    --h: 50px;
+  }
+  .hero-ctas .btn:first-child {
+    grid-column: 1 / -1;
+  }
+  .hero-ctas .btn-icon span {
+    display: inline;
+  }
+  .hero-ctas .btn-ghost:not(.btn-icon) svg {
+    display: none;
+  }
+  .hero-stats span {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .card-body p {
+    min-height: 0;
+  }
+  .modal-ctas .btn,
+  .card-end .btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .catalog-side {
+    display: none;
+  }
+  .catalog-main {
+    padding: 28px 20px 24px;
+  }
+  /* keep titles clear of the close button */
+  .catalog-main h3,
+  .modal-info h3 {
+    padding-right: 52px;
+    font-size: 26px;
+  }
+  .modal-media {
+    min-height: 0;
+    height: 220px;
+  }
+  .modal-media img {
+    width: auto;
+    height: 80%;
+  }
+  .catalog-done .modal-ctas {
+    flex-direction: column;
+  }
+  .form-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .faq-item summary {
+    padding: 20px 0;
+    gap: 16px;
+  }
+  .faq-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .ind {
+    min-height: 0;
+    padding: 24px 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .ind-n {
+    order: 3;
+    margin-left: auto;
+  }
+  .ind-icon {
+    margin: 0;
+    flex: none;
+  }
+  .scroll-gear {
+    width: 44px;
+    height: 44px;
+    right: 12px;
+    bottom: 12px;
+  }
+  .scroll-gear .mono {
+    font-size: 9px;
+  }
+}
+
+/* "TRANSMISSION." is one long word; size it to its half-width column on desktop */
+@media (min-width: 900px) {
+  .about-copy .h2,
+  .faq-head .h2 {
+    font-size: clamp(38px, 4vw, 76px);
+  }
 }
