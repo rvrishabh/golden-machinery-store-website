@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Download } from 'lucide-react'
+import { openCatalog } from '../lib/catalog'
 import { gsap, ScrollTrigger, SplitText, useGSAP, scrollState, scrollToTarget } from '../lib/motion'
 
 const PulleyScene = lazy(() => import('./PulleyScene'))
@@ -85,24 +86,27 @@ export default function Hero({ ready }) {
         <h1 className="hero-title">
           <span className="line"><span className="line-inner">Machinery</span></span>
           <span className="line"><span className="line-inner">works on</span></span>
-          <span className="line"><span className="line-inner gold">our hand.</span></span>
+          <span className="line"><span className="line-inner accent">our hand.</span></span>
         </h1>
         <p className="hero-sub">
           Precision-cast pulleys, couplings and block bearings, balanced and machined to keep India's
           industry turning.
         </p>
         <div className="hero-ctas">
-          <button className="btn btn-gold" onClick={() => scrollToTarget('#products')}>
+          <button className="btn btn-primary" onClick={() => scrollToTarget('#products')}>
             Explore products <ArrowDownRight size={18} />
           </button>
           <button className="btn btn-ghost" onClick={() => scrollToTarget('#contact')}>
             Request a quote <ArrowUpRight size={18} />
           </button>
+          <button className="btn btn-ghost btn-icon" onClick={openCatalog} aria-label="Download catalogue" title="Download catalogue">
+            <Download size={18} /> <span>Catalogue</span>
+          </button>
         </div>
       </div>
 
       <p className="hero-tagline container" aria-hidden="true">
-        Every turn, <span className="gold">engineered.</span>
+        Every turn, <span className="accent">engineered.</span>
       </p>
 
       <div className="hero-stats container">

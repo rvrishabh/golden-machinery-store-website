@@ -56,7 +56,7 @@ export default function ProductModal({ product, onClose }) {
               />
             </div>
             <div className="modal-info">
-              <p className="mono gold">{CATEGORIES.find((c) => c.id === product.category)?.label}</p>
+              <p className="mono accent">{CATEGORIES.find((c) => c.id === product.category)?.label}</p>
               <h3>{product.name}</h3>
               <p className="modal-sum">{product.summary}</p>
               <div className="modal-cols">
@@ -85,7 +85,7 @@ export default function ProductModal({ product, onClose }) {
                 Available in custom diameters, bores and groove configurations, machined to your drawing.
               </p>
               <div className="modal-ctas">
-                <a className="btn btn-gold" href={`https://wa.me/${BRAND.whatsapp}?text=${msg}`} target="_blank" rel="noreferrer">
+                <a className="btn btn-primary" href={`https://wa.me/${BRAND.whatsapp}?text=${msg}`} target="_blank" rel="noreferrer">
                   <MessageCircle size={18} /> Quote on WhatsApp
                 </a>
                 <a className="btn btn-ghost" href={`mailto:${BRAND.email}?subject=${encodeURIComponent('Enquiry: ' + product.name)}&body=${msg}`}>

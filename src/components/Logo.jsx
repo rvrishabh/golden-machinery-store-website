@@ -11,7 +11,7 @@ export default function Logo({ size = 44, className = '' }) {
           <rect x="0" y="0" width="100" height="78" />
         </clipPath>
       </defs>
-      <g clipPath="url(#logo-clip)" fill="none" stroke="var(--blue)" strokeWidth="3.2" strokeLinejoin="round">
+      <g clipPath="url(#logo-clip)" fill="none" stroke="var(--accent)" strokeWidth="3.2" strokeLinejoin="round">
         <path d={GEAR} />
         <circle cx="50" cy="52" r="26" />
       </g>

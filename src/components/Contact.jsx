@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ArrowUpRight, MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
+import { ArrowUpRight, MapPin, Phone, Mail, MessageCircle, Download, FileText } from 'lucide-react'
+import { openCatalog } from '../lib/catalog'
 import { BRAND, PRODUCTS } from '../data'
 
 export default function Contact() {
@@ -42,7 +43,7 @@ export default function Contact() {
               <div className="c-card" key={u.label} data-reveal>
                 <MapPin size={18} />
                 <div>
-                  <p className="mono gold">{u.label}</p>
+                  <p className="mono accent">{u.label}</p>
                   {u.lines.map((l) => (
                     <p key={l}>{l}</p>
                   ))}
@@ -52,7 +53,7 @@ export default function Contact() {
             <div className="c-card" data-reveal>
               <Phone size={18} />
               <div>
-                <p className="mono gold">Call</p>
+                <p className="mono accent">Call</p>
                 {BRAND.phones.map((p) => (
                   <a key={p} href={`tel:${p.replace(/\s/g, '')}`}>
                     {p}
@@ -63,17 +64,26 @@ export default function Contact() {
             <div className="c-card" data-reveal>
               <Mail size={18} />
               <div>
-                <p className="mono gold">Email</p>
+                <p className="mono accent">Email</p>
                 <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
               </div>
             </div>
           </div>
+
+          <button className="catalog-banner" onClick={openCatalog} data-reveal>
+            <FileText size={28} strokeWidth={1.4} />
+            <span>
+              <strong>Download our product catalogue</strong>
+              <small className="mono">PDF · All 12 product lines</small>
+            </span>
+            <Download size={20} className="catalog-banner-icon" />
+          </button>
         </div>
 
         <form className="form" onSubmit={submit} data-reveal>
           <div className="form-head">
             <p className="mono">Enquiry form</p>
-            <span className="mono gold">Opens in WhatsApp</span>
+            <span className="mono accent">Opens in WhatsApp</span>
           </div>
           <div className="row">
             <label>
@@ -105,7 +115,7 @@ export default function Contact() {
             <span>Requirement</span>
             <textarea rows={4} value={form.message} onChange={set('message')} placeholder="Size, bore, grooves, quantity…" />
           </label>
-          <button className="btn btn-gold btn-lg" type="submit">
+          <button className="btn btn-primary btn-lg" type="submit">
             <MessageCircle size={18} /> Send via WhatsApp <ArrowUpRight size={18} />
           </button>
         </form>

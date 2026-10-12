@@ -1,6 +1,7 @@
 import Logo from './Logo'
 import { BRAND } from '../data'
 import { scrollToTarget } from '../lib/motion'
+import { openCatalog } from '../lib/catalog'
 
 export default function Footer() {
   const go = (href) => (e) => {
@@ -41,6 +42,12 @@ export default function Footer() {
                 </a>
               ))}
               <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
+            </div>
+            <div>
+              <p className="mono">Resources</p>
+              <button className="foot-link" onClick={openCatalog}>
+                Download catalogue ↓
+              </button>
             </div>
           </nav>
         </div>

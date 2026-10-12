@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Download } from 'lucide-react'
+import { openCatalog } from '../lib/catalog'
 import { gsap, ScrollTrigger, useGSAP } from '../lib/motion'
 import { PRODUCTS, CATEGORIES } from '../data'
 import ProductModal from './ProductModal'
@@ -111,9 +112,12 @@ export default function Products() {
               <p className="mono">Need a custom size?</p>
               <h3>Made to your drawing.</h3>
               <p>Bore, diameter, groove count and face width, machined to your specification.</p>
-              <a href="#contact" className="btn btn-gold">
+              <a href="#contact" className="btn btn-primary">
                 Send a drawing <ArrowUpRight size={18} />
               </a>
+              <button className="btn btn-ghost" onClick={openCatalog}>
+                <Download size={18} /> Full catalogue
+              </button>
             </article>
           </div>
         </div>

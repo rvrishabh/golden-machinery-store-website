@@ -91,7 +91,7 @@ export default function About() {
                 <span className="stat-num" data-n={s.n}>
                   00
                 </span>
-                <span className="gold">{s.suffix}</span>
+                <span className="accent">{s.suffix}</span>
               </div>
               <p>{s.label}</p>
             </div>

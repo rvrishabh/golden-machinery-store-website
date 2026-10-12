@@ -71,9 +71,9 @@ function useBeltTexture() {
     c.width = 128
     c.height = 16
     const g = c.getContext('2d')
-    g.fillStyle = '#121214'
+    g.fillStyle = '#15191f'
     g.fillRect(0, 0, 128, 16)
-    g.fillStyle = '#d9a441'
+    g.fillStyle = '#5ca6e4'
     for (let i = 0; i < 4; i++) g.fillRect(i * 32 + 2, 0, 3, 16)
     const t = new THREE.CanvasTexture(c)
     t.wrapS = t.wrapT = THREE.RepeatWrapping
@@ -105,25 +105,25 @@ function BigPulley({ spin }) {
     <group position={[BIG.x, 0, 0]}>
       <group ref={ref}>
         <mesh geometry={rim} rotation-x={Math.PI / 2} castShadow>
-          <meshStandardMaterial color="#d6a648" metalness={1} roughness={0.28} side={THREE.DoubleSide} />
+          <meshStandardMaterial color="#c3ccd7" metalness={0.55} roughness={0.28} side={THREE.DoubleSide} />
         </mesh>
         {spokes.map((g, i) => (
           <mesh key={i} geometry={g} scale={[1, 1, 2.2]}>
-            <meshStandardMaterial color="#1b1c20" metalness={0.85} roughness={0.42} />
+            <meshStandardMaterial color="#14181e" metalness={0.6} roughness={0.45} />
           </mesh>
         ))}
         <mesh rotation-x={Math.PI / 2}>
           <cylinderGeometry args={[0.55, 0.55, 0.9, 48]} />
-          <meshStandardMaterial color="#1b1c20" metalness={0.85} roughness={0.38} />
+          <meshStandardMaterial color="#14181e" metalness={0.6} roughness={0.4} />
         </mesh>
         <mesh rotation-x={Math.PI / 2}>
           <cylinderGeometry args={[0.3, 0.3, 0.92, 48]} />
-          <meshStandardMaterial color="#e8c26a" metalness={1} roughness={0.18} />
+          <meshStandardMaterial color="#2f7fc1" metalness={0.7} roughness={0.25} />
         </mesh>
         {/* keyway marker so rotation always reads */}
         <mesh position={[0, 0.31, 0.47]}>
           <boxGeometry args={[0.1, 0.08, 0.02]} />
-          <meshStandardMaterial color="#0b0c0e" />
+          <meshStandardMaterial color="#f6f8fb" />
         </mesh>
       </group>
     </group>
@@ -140,14 +140,14 @@ function SmallPulley({ spin }) {
     <group position={[SMALL.x, 0, 0]}>
       <group ref={ref}>
         <mesh geometry={body} rotation-x={Math.PI / 2} castShadow>
-          <meshStandardMaterial color="#2f7fc1" metalness={0.75} roughness={0.3} side={THREE.DoubleSide} />
+          <meshStandardMaterial color="#2f7fc1" metalness={0.55} roughness={0.32} side={THREE.DoubleSide} />
         </mesh>
         {Array.from({ length: 5 }, (_, i) => {
           const a = (i / 5) * Math.PI * 2
           return (
             <mesh key={i} position={[Math.cos(a) * 0.62, Math.sin(a) * 0.62, 0.13]} rotation-x={Math.PI / 2}>
               <cylinderGeometry args={[0.07, 0.07, 0.06, 6]} />
-              <meshStandardMaterial color="#e8c26a" metalness={1} roughness={0.2} />
+              <meshStandardMaterial color="#e3e8ee" metalness={0.5} roughness={0.25} />
             </mesh>
           )
         })}
@@ -223,16 +223,17 @@ export default function PulleyScene({ active, drag }) {
       camera={{ position: [0, 0, 11.5], fov: 34 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
     >
-      <ambientLight intensity={0.25} />
-      <directionalLight position={[5, 6, 6]} intensity={1.4} color="#fff3dc" />
-      <directionalLight position={[-6, -2, 3]} intensity={0.5} color="#7fb4ff" />
+      <ambientLight intensity={0.55} />
+      <directionalLight position={[5, 6, 6]} intensity={1.4} color="#ffffff" />
+      <directionalLight position={[-6, -2, 3]} intensity={0.5} color="#9cc6ff" />
       <Drive drag={drag} />
-      <ContactShadows position={[0, -3.1, 0]} opacity={0.55} scale={18} blur={2.6} far={5} color="#000" />
+      <ContactShadows position={[0, -3.1, 0]} opacity={0.32} scale={18} blur={2.8} far={5} color="#123a63" />
       <Environment resolution={256}>
-        <Lightformer form="rect" intensity={3} position={[0, 5, -6]} scale={[12, 2, 1]} color="#fff2d6" />
-        <Lightformer form="rect" intensity={2} position={[-6, 1, 2]} rotation-y={Math.PI / 2} scale={[8, 3, 1]} color="#ffd38a" />
+        <Lightformer form="rect" intensity={3} position={[0, 5, -6]} scale={[12, 2, 1]} color="#ffffff" />
+        <Lightformer form="rect" intensity={2} position={[-6, 1, 2]} rotation-y={Math.PI / 2} scale={[8, 3, 1]} color="#e9f2fb" />
         <Lightformer form="rect" intensity={1.4} position={[6, -1, 2]} rotation-y={-Math.PI / 2} scale={[8, 3, 1]} color="#9cc6ff" />
         <Lightformer form="ring" intensity={2.2} position={[0, 0, 8]} scale={4} color="#ffffff" />
+        <Lightformer form="rect" intensity={1.2} position={[0, -5, 3]} rotation-x={Math.PI / 2} scale={[14, 6, 1]} color="#ffffff" />
       </Environment>
     </Canvas>
   )

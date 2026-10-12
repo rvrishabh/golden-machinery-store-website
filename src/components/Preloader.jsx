@@ -35,12 +35,12 @@ export default function Preloader({ onDone }) {
       <div className="pl-inner">
         <div className="pl-gears" aria-hidden="true">
           <svg className="pl-gear-big" viewBox="0 0 120 120" width="120" height="120">
-            <path d={BIG} fill="none" stroke="var(--gold)" strokeWidth="2" />
-            <circle cx="60" cy="60" r="14" fill="none" stroke="var(--gold)" strokeWidth="2" />
+            <path d={BIG} fill="none" stroke="var(--accent)" strokeWidth="2" />
+            <circle cx="60" cy="60" r="14" fill="none" stroke="var(--accent)" strokeWidth="2" />
           </svg>
           <svg className="pl-gear-small" viewBox="0 0 60 60" width="60" height="60">
-            <path d={SMALL} fill="none" stroke="var(--blue)" strokeWidth="2" />
-            <circle cx="30" cy="30" r="7" fill="none" stroke="var(--blue)" strokeWidth="2" />
+            <path d={SMALL} fill="none" stroke="var(--ink-logo)" strokeWidth="2" />
+            <circle cx="30" cy="30" r="7" fill="none" stroke="var(--ink-logo)" strokeWidth="2" />
           </svg>
         </div>
         <p className="pl-brand">Golden Machinery</p>

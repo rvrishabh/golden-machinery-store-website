@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, Phone, Download } from 'lucide-react'
+import { openCatalog } from '../lib/catalog'
 import Logo from './Logo'
 import { scrollToTarget, lenis } from '../lib/motion'
 import { BRAND } from '../data'
@@ -55,7 +56,10 @@ export default function Nav() {
           <a className="nav-phone mono" href={`tel:${BRAND.phones[1].replace(/\s/g, '')}`}>
             <Phone size={14} /> {BRAND.phones[1]}
           </a>
-          <a href="#contact" className="btn btn-gold btn-sm" onClick={go('#contact')}>
+          <button className="btn btn-ghost btn-sm nav-catalog" onClick={openCatalog}>
+            <Download size={15} /> Catalogue
+          </button>
+          <a href="#contact" className="btn btn-primary btn-sm" onClick={go('#contact')}>
             Enquire
           </a>
           <button className="nav-toggle" onClick={() => setOpen((o) => !o)} aria-label={open ? 'Close menu' : 'Open menu'}>
@@ -69,6 +73,15 @@ export default function Nav() {
             <span className="mono">0{i + 1}</span> {label}
           </a>
         ))}
+        <button
+          className="btn btn-primary nav-sheet-cta"
+          onClick={() => {
+            setOpen(false)
+            openCatalog()
+          }}
+        >
+          <Download size={18} /> Download catalogue
+        </button>
         <div className="nav-sheet-foot mono">
           {BRAND.phones.map((p) => (
             <a key={p} href={`tel:${p.replace(/\s/g, '')}`}>{p}</a>

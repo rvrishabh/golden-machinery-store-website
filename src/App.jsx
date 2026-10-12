@@ -14,6 +14,7 @@ import Industries from './components/Industries'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollGear from './components/ScrollGear'
+import CatalogModal from './components/CatalogModal'
 import { INDUSTRIES } from './data'
 
 const TICKER = ['V-Belt Pulleys', 'Crown Patta Pulleys', 'Couplings', 'Block Bearings', 'Step Pulleys', 'Elevator Pulleys', 'Poly-V Pulleys', 'Made to drawing']
@@ -104,7 +105,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero ready={ready} />
-        <Marquee items={TICKER} tone="gold" />
+        <Marquee items={TICKER} tone="accent" />
         <About />
         <Products />
         <Engineering />
@@ -115,6 +116,7 @@ export default function App() {
       </main>
       <Footer />
       <ScrollGear />
+      <CatalogModal />
     </>
   )
 }
