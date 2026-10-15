@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { ArrowDownRight, ArrowUpRight, Download } from 'lucide-react'
 import { openCatalog } from '../lib/catalog'
+import { PRODUCTS } from '../data'
 import { gsap, ScrollTrigger, SplitText, useGSAP, scrollState, scrollToTarget } from '../lib/motion'
 
 const PulleyScene = lazy(() => import('./PulleyScene'))
@@ -120,8 +121,8 @@ export default function Hero({ ready }) {
           <span>Years of casting</span>
         </div>
         <div>
-          <strong>12</strong>
-          <span>Product lines</span>
+          <strong>{PRODUCTS.length}</strong>
+          <span>Products in range</span>
         </div>
         <div>
           <strong>02</strong>

@@ -1,9 +1,10 @@
 import { useRef } from 'react'
 import { gsap, useGSAP } from '../lib/motion'
+import { PRODUCTS } from '../data'
 
 const STATS = [
   { n: 60, suffix: '+', label: 'Years of manufacturing excellence' },
-  { n: 12, suffix: '', label: 'Product lines, cast & machined in-house' },
+  { n: PRODUCTS.length, suffix: '', label: 'Products in our range' },
   { n: 9, suffix: '', label: 'Industries kept in motion' },
   { n: 2, suffix: '', label: 'Manufacturing units in Agra' },
 ]
@@ -81,7 +82,7 @@ export default function About() {
                 </textPath>
               </text>
             </svg>
-            <img src="/brand/hero-pair.png" alt="Golden Machinery V-belt pulleys in pink and blue finish" loading="lazy" />
+            <img src="/brand/hero-pair.webp" alt="Golden Machinery V-belt pulleys in pink and blue finish" loading="lazy" />
           </div>
         </div>
 

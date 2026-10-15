@@ -27,7 +27,8 @@ export default function Products() {
           scrollTrigger: {
             trigger: '.rail',
             start: 'top top',
-            end: () => '+=' + distance(),
+            // the rail travels faster than the page scrolls, so a long range doesn't mean a very long pin
+            end: () => '+=' + Math.round(distance() * 0.55),
             pin: true,
             scrub: 0.6,
             refreshPriority: 5,

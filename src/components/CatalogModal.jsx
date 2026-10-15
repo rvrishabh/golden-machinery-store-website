@@ -93,7 +93,7 @@ export default function CatalogModal() {
               <p className="mono accent">Product catalogue</p>
               <h3>The complete Golden range.</h3>
               <ul>
-                <li><Check size={14} /> All 12 product lines</li>
+                <li><Check size={14} /> All {PRODUCTS.length} products</li>
                 <li><Check size={14} /> V-belt & crown patta diagrams</li>
                 <li><Check size={14} /> Industries we serve</li>
                 <li><Check size={14} /> Both Agra units & contacts</li>

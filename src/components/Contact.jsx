@@ -83,7 +83,7 @@ export default function Contact() {
             <FileText size={28} strokeWidth={1.4} />
             <span>
               <strong>Download our product catalogue</strong>
-              <small className="mono">PDF · All 12 product lines</small>
+              <small className="mono">PDF · All {PRODUCTS.length} products</small>
             </span>
             <Download size={20} className="catalog-banner-icon" />
           </button>

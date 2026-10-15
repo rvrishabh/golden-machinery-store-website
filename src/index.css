@@ -1048,11 +1048,14 @@ em {
 }
 
 .card-img img {
-  width: auto;
-  max-width: 78%;
-  height: 88%;
+  /* fills the box exactly (absolute + padding), so a tall photo can never grow past it into the name */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 6% 11%;
+  box-sizing: border-box;
   object-fit: contain;
-  position: relative;
   filter: drop-shadow(0 24px 30px rgba(20, 40, 70, 0.18));
   will-change: transform;
   user-select: none;
@@ -2635,4 +2638,77 @@ address {
   .faq-head .h2 {
     font-size: clamp(38px, 4vw, 76px);
   }
+}
+
+/* ---------- phone product grid: compact two-up cards (23 products) ---------- */
+@media (max-width: 899px) {
+  .rail-track {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .rail-head {
+    margin-bottom: 20px;
+  }
+  .card {
+    padding: 12px 12px 14px;
+    border-radius: 14px;
+  }
+  .card-top {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+  .card-top span:last-child {
+    display: none;
+  }
+  .card-img {
+    height: 120px;
+    margin: 4px 0 8px;
+  }
+  .card-body h3 {
+    font-size: 14px;
+    margin: 0;
+  }
+  .card-body p {
+    display: none;
+  }
+  .card-cta {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .card-end {
+    grid-column: 1 / -1;
+    padding: 22px 18px;
+  }
+  .card-end h3 {
+    font-size: 30px;
+  }
+}
+
+/* phones: filter chips become one swipeable row instead of stacking into four lines */
+@media (max-width: 899px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: calc(100% + var(--gutter) * 2);
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 2px var(--gutter);
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+  .chip {
+    flex: none;
+  }
+  .rail-head {
+    gap: 20px;
+  }
+}
+
+/* wheels spin inside their box, so give them extra room to turn without touching the name */
+.card[data-roll] .card-img img {
+  padding: 11% 15%;
 }
